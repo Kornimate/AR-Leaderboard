@@ -1,4 +1,10 @@
 
+using AR_WebApi.Interfaces;
+using AR_WebApi.Models;
+using AR_WebApi.Services;
+using AR_WebApi.SignalR;
+using Microsoft.EntityFrameworkCore;
+
 namespace AR_WebApi
 {
     public class Program
@@ -7,16 +13,27 @@ namespace AR_WebApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddDbContext<LeaderBoardDbContext>(options =>
+            {
+                options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnection"));
+                options.UseLazyLoadingProxies();
+            });
+
+
+            builder.Services.AddTransient<UpdateHub>();
+
+            builder.Services.AddTransient<ILeaderBoardService, LeaderBoardService>();
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -27,8 +44,15 @@ namespace AR_WebApi
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.MapHub<UpdateHub>("/updates");
+
+            using (var serviceScope = app.Services.CreateScope())
+            using (var context = serviceScope.ServiceProvider.GetRequiredService<LeaderBoardDbContext>())
+            {
+                DBSSetupService.SetupDb(context);
+            }
 
             app.Run();
         }
