@@ -1,6 +1,7 @@
-@AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
+@AR_WebApi_HostAddress = http://matekorni-001-site1.jtempurl.com
 
 POST {{AR_WebApi_HostAddress}}/api/leaderboard/add
+Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
 XApiKey: BDEi5aq1VC7oTBZ4tDYXTEyN2WeFaYUCilKCl1OUREHhJIlul4mnRgXqf6Yw2nh5gIWQzAm1bMCzVjKclVdp31IShDQEY1chEow7WVmVilDxHvJFZ1BSKSnOo7B6TXgb
 Accept: application/json
 Content-Type: application/json
@@ -13,8 +14,10 @@ Content-Type: application/json
 ###
 
 GET {{AR_WebApi_HostAddress}}/api/leaderboard/list
+Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
 
 ###
 
 DELETE {{AR_WebApi_HostAddress}}/api/leaderboard/clear
+Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
 XApiKey: BDEi5aq1VC7oTBZ4tDYXTEyN2WeFaYUCilKCl1OUREHhJIlul4mnRgXqf6Yw2nh5gIWQzAm1bMCzVjKclVdp31IShDQEY1chEow7WVmVilDxHvJFZ1BSKSnOo7B6TXgb
