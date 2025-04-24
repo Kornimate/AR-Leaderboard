@@ -1,6 +1,20 @@
 @AR_WebApi_HostAddress = http://localhost:5271
 
-GET {{AR_WebApi_HostAddress}}/weatherforecast/
+POST {{AR_WebApi_HostAddress}}/api/leaderboard/add
+X-Api-Key: BDEi5aq1VC7oTBZ4tDYXTEyN2WeFaYUCilKCl1OUREHhJIlul4mnRgXqf6Yw2nh5gIWQzAm1bMCzVjKclVdp31IShDQEY1chEow7WVmVilDxHvJFZ1BSKSnOo7B6TXgb
 Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Test7",
+  "score": "10"
+}
 
 ###
+
+GET {{AR_WebApi_HostAddress}}/api/leaderboard/list
+
+###
+
+DELETE {{AR_WebApi_HostAddress}}/api/leaderboard/clear
+X-Api-Key: BDEi5aq1VC7oTBZ4tDYXTEyN2WeFaYUCilKCl1OUREHhJIlul4mnRgXqf6Yw2nh5gIWQzAm1bMCzVjKclVdp31IShDQEY1chEow7WVmVilDxHvJFZ1BSKSnOo7B6TXgb

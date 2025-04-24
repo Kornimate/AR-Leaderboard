@@ -1,4 +1,5 @@
-﻿using AR_WebApi.Interfaces;
+﻿using AR_WebApi.DTOs;
+using AR_WebApi.Interfaces;
 using AR_WebApi.Models;
 using AR_WebApi.SignalR;
 using Microsoft.AspNetCore.SignalR;
@@ -21,7 +22,7 @@ namespace AR_WebApi.Services
         public async Task<bool> AddItemToList(LeaderBoardItemDTO item)
         {
             try
-            {                
+            {
                 await _context.LeaderBoardItems.AddAsync(new()
                 {
                     Id = Guid.NewGuid(),
@@ -60,9 +61,36 @@ namespace AR_WebApi.Services
             }
         }
 
-        public async Task<List<LeaderBoardItem>> GetList()
+        public async Task<List<LeaderBoardItemResponseDTO>> GetList()
         {
-            return await _context.LeaderBoardItems.ToListAsync();
+            var listOfItems = await _context.LeaderBoardItems
+                                    .OrderByDescending(x => x.Score)
+                                    .ThenByDescending(x => x.RecordedTime)
+                                    .Select(x => new LeaderBoardItemResponseDTO()
+                                    {
+                                        Name = x.Name,
+                                        Score = x.Score,
+                                    })
+                                    .ToListAsync();
+
+            int currentRank = 1;
+            int sameRankCounter = 0;
+
+            for (int i = 0; i < listOfItems.Count; i++)
+            {
+                if (i > 0 && listOfItems[i].Score < listOfItems[i - 1].Score)
+                {
+                    listOfItems[i].Rank = (currentRank += sameRankCounter);
+                    sameRankCounter = 1;
+                }
+                else
+                {
+                    listOfItems[i].Rank = currentRank;
+                    ++sameRankCounter;
+                }
+            }
+
+            return listOfItems;
         }
     }
 }

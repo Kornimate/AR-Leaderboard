@@ -45,7 +45,7 @@ namespace AR_WebApi.Controllers
             var succcessfulOperation = await _service.ClearList();
 
             return succcessfulOperation 
-                ? StatusCode(StatusCodes.Status201Created)
+                ? StatusCode(StatusCodes.Status200OK)
                 : StatusCode(StatusCodes.Status500InternalServerError);
         }
 
