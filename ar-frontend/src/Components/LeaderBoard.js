@@ -30,9 +30,7 @@ const LeaderBoard = () => {
     
         connection
           .start()
-          .then(() => {
-            console.log("SignalR Connected");
-    
+          .then(() => {    
             connection.on(SIGNALR_MESSAGE, (user, message) => {
               UpdateList();
             });
@@ -67,7 +65,7 @@ const LeaderBoard = () => {
 
     return (
         <>
-            <Typography variant='h1' gutterBottom sx={{marginTop: 2, padding: 2, borderRadius: 4, bgcolor: "#E74C3C"}}>PicARsso Leaderboard</Typography>
+            <Typography variant='h1' gutterBottom sx={{marginTop: 2, padding: 2, borderRadius: 4, bgcolor: "#F1C40F"}}>Leaderboard</Typography>
             {
                 list.length > 0
                 ? <List sx={{ width: '100%', maxWidth: 300, bgcolor: "#9B59B6", borderRadius: 3 }}>

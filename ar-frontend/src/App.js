@@ -1,12 +1,14 @@
 import LeaderBoard from "./Components/LeaderBoard";
+import TopBar from './Components/TopBar';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <TopBar />
+      <main className="App-header">
         <LeaderBoard />
-      </header>
+      </main>
     </div>
   );
 }
