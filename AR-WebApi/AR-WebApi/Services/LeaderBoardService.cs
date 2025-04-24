@@ -68,6 +68,7 @@ namespace AR_WebApi.Services
                                     .ThenByDescending(x => x.RecordedTime)
                                     .Select(x => new LeaderBoardItemResponseDTO()
                                     {
+                                        Key = x.Id.ToString(),
                                         Name = x.Name,
                                         Score = x.Score,
                                     })

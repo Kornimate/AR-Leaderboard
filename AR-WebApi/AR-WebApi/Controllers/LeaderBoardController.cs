@@ -9,7 +9,7 @@ namespace AR_WebApi.Controllers
     [Route("api/leaderboard")]
     public class LeaderBoardController : ControllerBase
     {
-        private const string HEADER_KEY = "X-Api-Key";
+        private const string HEADER_KEY = "XApiKey";
 
         private readonly ILeaderBoardService _service;
         private readonly IConfiguration _configuration;

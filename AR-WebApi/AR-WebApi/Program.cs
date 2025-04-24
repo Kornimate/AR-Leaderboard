@@ -34,12 +34,13 @@ namespace AR_WebApi
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("CorsPolicy", builder =>
+                options.AddPolicy("CorsPolicy", corsBuilder =>
                 {
-                    builder
-                        .AllowAnyOrigin()
+                    corsBuilder
+                        .WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowAnyHeader();
+                        .AllowCredentials();
                 });
             });
 
@@ -49,8 +50,9 @@ namespace AR_WebApi
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.UseCors("CorsPolicy");
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 
@@ -58,7 +60,7 @@ namespace AR_WebApi
 
             app.MapControllers();
 
-            app.MapHub<UpdateHub>("/updates");
+            app.MapHub<UpdateHub>("/signalr/updates");
 
             using (var serviceScope = app.Services.CreateScope())
             using (var context = serviceScope.ServiceProvider.GetRequiredService<LeaderBoardDbContext>())
