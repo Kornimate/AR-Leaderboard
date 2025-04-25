@@ -43,7 +43,11 @@ const LeaderBoard = () => {
       }, []);
 
     function UpdateList(){
-        axios.get(`${CONFIGURATION.BASE_URL}${CONFIGURATION.API_ENDPOINT}/list`)
+        axios.get(`${CONFIGURATION.BASE_URL}${CONFIGURATION.API_ENDPOINT}/list`,{
+            headers: {
+                "Authorization": "Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs"
+            }
+        })
         .then(response => {
             setList(response.data)
         }).catch(error => {

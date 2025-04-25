@@ -37,7 +37,7 @@ namespace AR_WebApi
                 options.AddPolicy("CorsPolicy", corsBuilder =>
                 {
                     corsBuilder
-                        .WithOrigins("http://localhost:3000")
+                        .WithOrigins(builder.Configuration["AllowedClient"]!)
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();

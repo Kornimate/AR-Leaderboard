@@ -1,4 +1,4 @@
-@AR_WebApi_HostAddress = http://matekorni-001-site1.jtempurl.com
+@AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
 
 POST {{AR_WebApi_HostAddress}}/api/leaderboard/add
 Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
@@ -7,8 +7,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Test9",
-  "score": "50"
+  "name": "Test4",
+  "score": "7"
 }
 
 ###
