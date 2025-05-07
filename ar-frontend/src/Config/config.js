@@ -6,7 +6,7 @@ const ENVIRONMENTS = Object.freeze({
 const APP_ENV = ENVIRONMENTS.PRODUCTION;
 
 const CONFIGURATION = Object.freeze({
-    BASE_URL : APP_ENV === ENVIRONMENTS.DEBUG ? "http://localhost:5271" : "https://matekorni-001-site1.jtempurl.com", //TODO finish it when web api hosted
+    BASE_URL : APP_ENV === ENVIRONMENTS.DEBUG ? "http://localhost:5271" : "https://matekorni-001-site1.jtempurl.com",
     API_ENDPOINT: "/api/leaderboard",
     SIGNALR_ENDPOINT : "/signalr/updates"
 })

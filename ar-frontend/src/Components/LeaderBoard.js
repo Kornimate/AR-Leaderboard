@@ -69,7 +69,7 @@ const LeaderBoard = () => {
 
     return (
         <>
-            <Typography variant='h1' gutterBottom sx={{marginTop: 2, padding: 2, borderRadius: 4, bgcolor: "#F1C40F"}}>Leaderboard</Typography>
+            <Typography variant='h2' component="div" gutterBottom sx={{marginTop: 2, padding: 2, borderRadius: 4, bgcolor: "#F1C40F", flexGrow:0}}>Leaderboard</Typography>
             {
                 list.length > 0
                 ? <List sx={{ width: '100%', maxWidth: 300, bgcolor: "#9B59B6", borderRadius: 3 }}>
