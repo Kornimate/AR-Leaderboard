@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.41edc856.css",
-    "main.js": "/static/js/main.5b859463.js",
-    "static/js/453.4daa3e8d.chunk.js": "/static/js/453.4daa3e8d.chunk.js",
-    "static/media/game-jam-logo.png": "/static/media/game-jam-logo.e0c3ce80e456e947c295.png",
-    "index.html": "/index.html",
-    "main.41edc856.css.map": "/static/css/main.41edc856.css.map",
-    "main.5b859463.js.map": "/static/js/main.5b859463.js.map",
-    "453.4daa3e8d.chunk.js.map": "/static/js/453.4daa3e8d.chunk.js.map"
+    "main.css": "/AR-Leaderboard/static/css/main.41edc856.css",
+    "main.js": "/AR-Leaderboard/static/js/main.9277772a.js",
+    "static/js/453.4daa3e8d.chunk.js": "/AR-Leaderboard/static/js/453.4daa3e8d.chunk.js",
+    "static/media/game-jam-logo.png": "/AR-Leaderboard/static/media/game-jam-logo.e0c3ce80e456e947c295.png",
+    "index.html": "/AR-Leaderboard/index.html",
+    "main.41edc856.css.map": "/AR-Leaderboard/static/css/main.41edc856.css.map",
+    "main.9277772a.js.map": "/AR-Leaderboard/static/js/main.9277772a.js.map",
+    "453.4daa3e8d.chunk.js.map": "/AR-Leaderboard/static/js/453.4daa3e8d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41edc856.css",
-    "static/js/main.5b859463.js"
+    "static/js/main.9277772a.js"
   ]
 }
