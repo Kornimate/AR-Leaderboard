@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AR_LeaderBoard_Rename_Mobile.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25"
+            HorizontalOptions="Center">
+
+            <Label
+                Text="URL"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Entry Text="{Binding Url}" />
+
+            <Label
+                Text="Old Team Name"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Entry Text="{Binding OldTeamName}" />
+
+            <Label
+                Text="New Team Name"
+                Style="{StaticResource SubHeadline}"
+                SemanticProperties.HeadingLevel="Level2" />
+
+            <Entry Text="{Binding NewTeamName}" />
+
+            <Button
+                Text="Send Request" 
+                HorizontalOptions="Fill"
+                Command="{Binding SendRequestCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
