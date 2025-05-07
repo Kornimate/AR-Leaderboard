@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import logo from "../assets/game-jam-logo.png";
-import "../styles/TopBar.css";
+import "../Styles/TopBar.css";
 
 const TopBar = () => {
 

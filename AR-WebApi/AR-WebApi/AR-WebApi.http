@@ -1,4 +1,5 @@
-@AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
+# @AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
+@AR_WebApi_HostAddress = http://localhost:5271
 
 POST {{AR_WebApi_HostAddress}}/api/leaderboard/add
 Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
@@ -7,8 +8,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Team4",
-  "score": "7"
+  "name": "Team5",
+  "score": "8"
 }
 
 ###
@@ -20,8 +21,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "oldName": "Team4",
-  "newName": "RenamedTeam4"
+  "oldName": "Team5",
+  "newName": "RenamedTeam5"
 }
 
 ###
