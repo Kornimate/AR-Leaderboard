@@ -100,6 +100,11 @@ namespace AR_WebApi.Services
             return listOfItems;
         }
 
+        public async Task<int> GetListCount()
+        {
+            return await _context.LeaderBoardItems.CountAsync();
+        }
+
         public async Task<bool> RenameTeamOrPlaceOrder(RenameItemDTO newItem)
         {
             var transaction = await _context.Database.BeginTransactionAsync();

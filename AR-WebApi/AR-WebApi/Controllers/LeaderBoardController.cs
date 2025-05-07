@@ -22,9 +22,15 @@ namespace AR_WebApi.Controllers
 
 
         [HttpGet("list")]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> GetList()
         {
             return Ok(await _service.GetList());
+        }
+        
+        [HttpGet("count")]
+        public async Task<IActionResult> GetListCount()
+        {
+            return Ok(await _service.GetListCount());
         }
 
         [HttpPost("add")]
