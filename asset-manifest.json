@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/AR-Leaderboard/static/css/main.d951f4a8.css",
+    "main.css": "/AR-Leaderboard/static/css/main.854df315.css",
     "main.js": "/AR-Leaderboard/static/js/main.8d5fb0a2.js",
     "static/js/453.4daa3e8d.chunk.js": "/AR-Leaderboard/static/js/453.4daa3e8d.chunk.js",
     "static/media/game-jam-logo.png": "/AR-Leaderboard/static/media/game-jam-logo.e0c3ce80e456e947c295.png",
     "index.html": "/AR-Leaderboard/index.html",
-    "main.d951f4a8.css.map": "/AR-Leaderboard/static/css/main.d951f4a8.css.map",
+    "main.854df315.css.map": "/AR-Leaderboard/static/css/main.854df315.css.map",
     "main.8d5fb0a2.js.map": "/AR-Leaderboard/static/js/main.8d5fb0a2.js.map",
     "453.4daa3e8d.chunk.js.map": "/AR-Leaderboard/static/js/453.4daa3e8d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d951f4a8.css",
+    "static/css/main.854df315.css",
     "static/js/main.8d5fb0a2.js"
   ]
 }
