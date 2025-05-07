@@ -1,5 +1,5 @@
-# @AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
-@AR_WebApi_HostAddress = http://localhost:5271
+@AR_WebApi_HostAddress = https://matekorni-001-site1.jtempurl.com
+# @AR_WebApi_HostAddress = http://localhost:5271
 
 POST {{AR_WebApi_HostAddress}}/api/leaderboard/add
 Authorization: Basic MTEyMzk4MDU6NjAtZGF5ZnJlZXRyaWFs
