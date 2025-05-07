@@ -8,5 +8,6 @@ namespace AR_WebApi.Interfaces
         Task<List<LeaderBoardItemResponseDTO>> GetList();
         Task<bool> ClearList();
         Task<bool> AddItemToList(LeaderBoardItemDTO item);
+        Task<bool> RenameTeamOrPlaceOrder(RenameItemDTO newItem);
     }
 }

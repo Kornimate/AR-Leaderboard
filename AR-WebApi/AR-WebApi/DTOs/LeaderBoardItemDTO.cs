@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AR_WebApi.Models
+namespace AR_WebApi.DTOs
 {
     public class LeaderBoardItemDTO
     {

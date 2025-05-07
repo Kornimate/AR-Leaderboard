@@ -1,6 +1,6 @@
 ﻿using AR_WebApi.Controllers.ActionFilters;
+using AR_WebApi.DTOs;
 using AR_WebApi.Interfaces;
-using AR_WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AR_WebApi.Controllers
@@ -35,6 +35,17 @@ namespace AR_WebApi.Controllers
             
             return succcessfulOperation 
                 ? StatusCode(StatusCodes.Status201Created) 
+                : StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [HttpPost("rename")]
+        [AuthorizationFilter(HEADER_KEY)]
+        public async Task<IActionResult> RenameTeam(RenameItemDTO newItem)
+        {
+            var succcessfulOperation = await _service.RenameTeamOrPlaceOrder(newItem);
+
+            return succcessfulOperation
+                ? StatusCode(StatusCodes.Status200OK)
                 : StatusCode(StatusCodes.Status500InternalServerError);
         }
 

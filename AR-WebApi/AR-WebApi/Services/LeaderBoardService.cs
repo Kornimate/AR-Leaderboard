@@ -21,15 +21,21 @@ namespace AR_WebApi.Services
 
         public async Task<bool> AddItemToList(LeaderBoardItemDTO item)
         {
+            var transaction = await _context.Database.BeginTransactionAsync();
+
             try
             {
+                var renameItem = await _context.RenameItems.FirstOrDefaultAsync(x => x.OldName == item.Name);
+
                 await _context.LeaderBoardItems.AddAsync(new()
                 {
                     Id = Guid.NewGuid(),
-                    Name = item.Name,
+                    Name = renameItem?.NewName ?? item.Name,
                     Score = item.Score,
                     RecordedTime = DateTime.UtcNow,
                 });
+
+                await transaction.CommitAsync();
 
                 await _context.SaveChangesAsync();
 
@@ -92,6 +98,41 @@ namespace AR_WebApi.Services
             }
 
             return listOfItems;
+        }
+
+        public async Task<bool> RenameTeamOrPlaceOrder(RenameItemDTO newItem)
+        {
+            var transaction = await _context.Database.BeginTransactionAsync();
+
+            try
+            {
+                var item = await _context.LeaderBoardItems.FirstOrDefaultAsync(x => x.Name == newItem.OldName);
+
+                if (item != null)
+                {
+                    item.Name = newItem.NewName;
+                    await transaction.CommitAsync();
+                    await _context.SaveChangesAsync();
+                    await _hub.Clients.All.SendAsync(UPDATE_MESSAGE);
+                    return true;
+                }
+
+                await _context.RenameItems.AddAsync(new RenameItem()
+                {
+                    Id = Guid.NewGuid(),
+                    OldName = newItem.OldName,
+                    NewName = newItem.NewName
+                });
+
+                await transaction.CommitAsync();
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                return false;
+            }
         }
     }
 }
