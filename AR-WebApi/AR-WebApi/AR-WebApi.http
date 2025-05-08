@@ -8,7 +8,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "name": "Team5",
+  "name": "Team1",
   "score": "4"
 }
 
