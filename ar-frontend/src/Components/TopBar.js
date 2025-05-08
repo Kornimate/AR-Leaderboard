@@ -4,6 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import logo from "../assets/game-jam-logo.png";
+import textLogo from "../assets/picarsso-logo.png";
 import "../Styles/TopBar.css";
 
 const TopBar = () => {
@@ -21,12 +22,14 @@ const TopBar = () => {
             aria-label="game-jam-logo"
             onClick={NavigateToItchIo}
             color="inherit"
+            sx={{ bgcolor: "#9B59B6"}}
           >
-            <img src={logo} alt="game-jam-logo"/>
+            <img src={logo} alt="game-jam-logo" className="gameJamLogo" />
           </IconButton>
-          <Typography variant="h4" component="div" sx={{ flexGrow: 0, textAlign: "left" }}>
+          <img src={textLogo} alt="picarsso-logo" className="picarssoLogo" />
+          {/* <Typography variant="h4" component="div" sx={{ flexGrow: 0, textAlign: "left" }}>
           PicARsso
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
     </Box>
