@@ -35,6 +35,11 @@ namespace AR_WebApi.Services
                     RecordedTime = DateTime.UtcNow,
                 });
 
+                if(renameItem is not null)
+                {
+                    _context.RenameItems.Remove(renameItem);
+                }
+
                 await transaction.CommitAsync();
 
                 await _context.SaveChangesAsync();
@@ -54,6 +59,7 @@ namespace AR_WebApi.Services
             try
             {
                 _context.LeaderBoardItems.RemoveRange(_context.LeaderBoardItems);
+                _context.RenameItems.RemoveRange(_context.RenameItems);
 
                 await _context.SaveChangesAsync();
 

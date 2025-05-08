@@ -9,6 +9,8 @@ namespace AR_LeaderBoard_Rename_Mobile.Interfaces
     public interface IMainModel
     {
         event EventHandler<bool>? RequestSent;
-        void SendRequest(string url, string oldTeamName, string newTeamName);
+        event EventHandler<int>? EntriesReceivedAsString;
+        Task SendRequest(string url, string oldTeamName, string newTeamName);
+        Task GetNumberOfEntries(string url);
     }
 }

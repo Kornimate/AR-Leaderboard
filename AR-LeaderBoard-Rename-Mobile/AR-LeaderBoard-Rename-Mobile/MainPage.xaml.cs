@@ -12,14 +12,14 @@ namespace AR_LeaderBoard_Rename_Mobile
 
             _vm = vm;
 
-            _vm.ShowNotification += ShowAppNotification;
+            _vm.ShowNotification += async(sender, message) => await ShowAppNotification(sender, message);
 
             BindingContext = _vm;
         }
 
-        private void ShowAppNotification(object? sender, string e)
+        private async Task ShowAppNotification(object? sender, string message)
         {
-            //TODO
+            await DisplayAlert("Request", message, "OK");
         }
     }
 

@@ -8,7 +8,7 @@
     Title="AR_LeaderBoard_Rename_Mobile">
 
     <ShellContent
-        Title="Home"
+        Title="PicARsso"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 

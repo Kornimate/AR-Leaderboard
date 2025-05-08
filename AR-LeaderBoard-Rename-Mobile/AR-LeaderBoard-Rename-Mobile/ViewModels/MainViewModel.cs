@@ -1,8 +1,10 @@
 ﻿using AR_LeaderBoard_Rename_Mobile.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,7 @@ namespace AR_LeaderBoard_Rename_Mobile.ViewModels
     public class MainViewModel : ObservableObject
     {
         private readonly IMainModel _model;
+        private readonly IConfiguration _config;
 
         public event EventHandler<string>? ShowNotification;
 
@@ -22,7 +25,7 @@ namespace AR_LeaderBoard_Rename_Mobile.ViewModels
             get => _oldTeamName;
             set
             {
-                if(value !=  _oldTeamName)
+                if (value != _oldTeamName)
                 {
                     _oldTeamName = value;
                     OnPropertyChanged(nameof(OldTeamName));
@@ -59,25 +62,65 @@ namespace AR_LeaderBoard_Rename_Mobile.ViewModels
         }
 
         public ICommand SendRequestCommand { get; set; }
-        public MainViewModel(IMainModel model)
+        public ICommand GetHelpForTeamNameCommand { get; set; }
+        public MainViewModel(IMainModel model, IConfiguration config)
         {
             _model = model;
+            _config = config;
 
             _model.RequestSent += NotifyAboutResultOfRequest;
+            _model.EntriesReceivedAsString += SetOldTeamNameToSuggestion;
 
-            SendRequestCommand = new RelayCommand(SendRequest);
+            SendRequestCommand = new AsyncRelayCommand(SendRequest);
+            GetHelpForTeamNameCommand = new AsyncRelayCommand(GetHelpForTeamName);
 
-            Url = "https://matekorni-001-site1.jtempurl.com/api/rename";
+            _url = $"{_config["WebApiBaseAddress"]}";
+            _oldTeamName = string.Empty;
+            _newTeamName = string.Empty;
+        }
+
+        private async Task GetHelpForTeamName()
+        {
+            await _model.GetNumberOfEntries(Url);
+        }
+
+        private async Task SendRequest()
+        {
+            string errorMessage = string.Empty;
+
+            if(OldTeamName == string.Empty)
+            {
+                errorMessage = "Old Team Name";
+            }
+
+            if (NewTeamName == string.Empty)
+            {
+                errorMessage = String.Join(" and ", "New Team Name");
+            }
+
+            if(errorMessage != string.Empty)
+            {
+                errorMessage += " value(s) must be set";
+                ShowNotification?.Invoke(this, errorMessage);
+                return;
+            }
+
+            await _model.SendRequest(Url, OldTeamName, NewTeamName);
         }
 
         private void NotifyAboutResultOfRequest(object? sender, bool success)
         {
-            ShowNotification?.Invoke(this, success ? "Request was successful", "Request was NOT successful");
+            ShowNotification?.Invoke(this, success ? "Request was successful" : "Request was NOT successful");
+            if (success)
+            {
+                OldTeamName = string.Empty;
+                NewTeamName = string.Empty;
+            }
         }
 
-        private void SendRequest()
+        private void SetOldTeamNameToSuggestion(object? sender, int teamNumber)
         {
-            _model.SendRequest(Url, OldTeamName, NewTeamName);
+            OldTeamName = $"Team{teamNumber + 1}";
         }
     }
 }
