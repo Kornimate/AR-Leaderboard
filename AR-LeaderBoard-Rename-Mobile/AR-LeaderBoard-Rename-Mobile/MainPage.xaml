@@ -43,14 +43,12 @@
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
-                    Text="&#xE895;"
-                    FontFamily="Segoe Fluent Icons"
                     FontSize="24"
-                    WidthRequest="60"
-                    HeightRequest="40"
                     BackgroundColor="MediumPurple"
                     TextColor="White"
-                    Command="{Binding GetHelpForTeamNameCommand}" />
+                    Command="{Binding GetHelpForTeamNameCommand}"
+                    Text="🔄️">
+                </Button>
             </Grid>
 
             <Label
