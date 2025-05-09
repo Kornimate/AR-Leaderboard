@@ -86,22 +86,23 @@ namespace AR_LeaderBoard_Rename_Mobile.ViewModels
 
         private async Task SendRequest()
         {
-            string errorMessage = string.Empty;
+            List<string> errorMessageComponents = [];
+            string createdMessage = string.Empty;
 
-            if(OldTeamName == string.Empty)
+            if (OldTeamName == string.Empty)
             {
-                errorMessage = "Old Team Name";
+                errorMessageComponents.Add("Old Team Name");
             }
 
             if (NewTeamName == string.Empty)
             {
-                errorMessage = String.Join(" and ", "New Team Name");
+                errorMessageComponents.Add("New Team Name");
             }
 
-            if(errorMessage != string.Empty)
+            if (errorMessageComponents.Count != 0)
             {
-                errorMessage += " value(s) must be set";
-                ShowNotification?.Invoke(this, errorMessage);
+                createdMessage = String.Join(" and ", errorMessageComponents) + $" value{(errorMessageComponents.Count == 2 ? "s" : "")} must be set";
+                ShowNotification?.Invoke(this, createdMessage);
                 return;
             }
 

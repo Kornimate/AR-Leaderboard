@@ -23,26 +23,40 @@ namespace AR_LeaderBoard_Rename_Mobile.Models
         }
         public async Task SendRequest(string baseAddress, string oldTeamName, string newTeamName)
         {
-            var client = GetHttpClient(baseAddress, true);
-
-            var jsonBody = JsonSerializer.Serialize(new
+            try
             {
-                OldName = oldTeamName,
-                NewName = newTeamName
-            });
+                var client = GetHttpClient(baseAddress, true);
 
-            var response = await client.PostAsync("/api/leaderboard/rename", new StringContent(jsonBody, Encoding.UTF8, "application/json"));
+                var jsonBody = JsonSerializer.Serialize(new
+                {
+                    OldName = oldTeamName,
+                    NewName = newTeamName
+                });
 
-            RequestSent?.Invoke(this, response.IsSuccessStatusCode);
+                var response = await client.PostAsync("/api/leaderboard/rename", new StringContent(jsonBody, Encoding.UTF8, "application/json"));
+
+                RequestSent?.Invoke(this, response.IsSuccessStatusCode);
+            }
+            catch (Exception)
+            {
+                RequestSent?.Invoke(this, false);
+            }
         }
 
         public async Task GetNumberOfEntries(string baseAddress)
         {
-            var client = GetHttpClient(baseAddress, true);
+            try
+            {
+                var client = GetHttpClient(baseAddress, true);
 
-            var response = await client.GetAsync("/api/leaderboard/count");
+                var response = await client.GetAsync("/api/leaderboard/count");
 
-            EntriesReceivedAsString?.Invoke(this, int.Parse(await response.Content.ReadAsStringAsync()));
+                EntriesReceivedAsString?.Invoke(this, int.Parse(await response.Content.ReadAsStringAsync()));
+            }
+            catch (Exception)
+            {
+                RequestSent?.Invoke(this, false);
+            }
         }
 
         private HttpClient GetHttpClient(string baseAddress, bool addApiKey)
