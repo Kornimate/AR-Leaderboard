@@ -1,7 +1,6 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import logo from "../assets/game-jam-logo.png";
 import textLogo from "../assets/picarsso-logo.png";
@@ -11,6 +10,10 @@ const TopBar = () => {
 
     function NavigateToItchIo(){
       window.location = "https://platak1sm.itch.io/aar25t2";
+    }
+
+    function NavigateToPicARsso(){
+      window.location = "https://kornimate.github.io/PicARsso/";
     }
 
     return (
@@ -26,10 +29,13 @@ const TopBar = () => {
           >
             <img src={logo} alt="game-jam-logo" className="gameJamLogo" />
           </IconButton>
-          <img src={textLogo} alt="picarsso-logo" className="picarssoLogo" />
-          {/* <Typography variant="h4" component="div" sx={{ flexGrow: 0, textAlign: "left" }}>
-          PicARsso
-          </Typography> */}
+          <IconButton
+            aria-label="picarsso-logo"
+            onClick={NavigateToPicARsso}
+            color="inherit"
+          >
+            <img src={textLogo} alt="picarsso-logo" className="picarssoLogo" />
+          </IconButton>
         </Toolbar>
       </AppBar>
     </Box>
